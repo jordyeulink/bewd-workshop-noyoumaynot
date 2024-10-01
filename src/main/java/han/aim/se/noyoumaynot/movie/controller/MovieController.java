@@ -1,6 +1,7 @@
 package han.aim.se.noyoumaynot.movie.controller;
 
 import han.aim.se.noyoumaynot.movie.domain.Movie;
+import han.aim.se.noyoumaynot.movie.domain.User;
 import han.aim.se.noyoumaynot.movie.service.AuthenticationService;
 import han.aim.se.noyoumaynot.movie.service.MovieService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,22 +34,22 @@ public class MovieController {
     @GetMapping("/show")
     public Movie getMovieById(@RequestParam("id") String id,
                               @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
-            authenticate(token,authorization);
+            authenticate(token,authorization, "show");
             Movie movie = movieService.getMovieById(id);
             return movie;
     }
 
-    @GetMapping("/login")
-    public String getLogin(@RequestParam("username") String username,@RequestParam("password") String password,
+    @PostMapping("/login")
+    public String postLogin(@RequestParam("user") User user,
                            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
-        token = authenticationService.login(username, password);
+        token = authenticationService.login(user);
         return "Login is verwerkt!";
     }
 
     @PostMapping("/add")
     public Movie addMovie(@RequestBody Movie movie,
                           @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
-        authenticate(token,authorization);
+        authenticate(token,authorization, "add");
         movieService.insertMovie(movie);
         return movie;
     }
@@ -56,13 +57,13 @@ public class MovieController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteMovie(@PathVariable("id") String id,
                                               @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
-        authenticate(token,authorization);
+        authenticate(token,authorization, "delete");
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();
     }
 
-    private String authenticate(String token, String authorization) throws Exception {
-        if (authenticationService.isValidToken(token)){
+    private String authenticate(String token, String authorization, String action) throws Exception {
+        if (authenticationService.isValidToken(token, action)){
             return authenticationService.getUsername(token);
         } else {
             throw new AuthenticationException("Invalid token");

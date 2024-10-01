@@ -1,5 +1,7 @@
 package han.aim.se.noyoumaynot.movie.service;
 
+import han.aim.se.noyoumaynot.movie.domain.Role;
+import han.aim.se.noyoumaynot.movie.domain.User;
 import han.aim.se.noyoumaynot.movie.repository.UserToken;
 import org.springframework.stereotype.Service;
 
@@ -9,18 +11,26 @@ import java.util.ArrayList;
 public class AuthenticationService {
   ArrayList<UserToken> userTokens = new ArrayList<>();
 
-  private final String username = "test";
-  private final String password ="123";
+  private User beheerder = new User("test","123");
+  private User gebruiker = new User("ben","123");
 
-  public String login(String username, String password) {
-    if(username.equals(this.username)&&password.equals(this.password)){
+  private Role beheerderRole = new Role("beheerder", true);
+  private Role gebruikerRole = new Role("gebruiker", false);
+
+  public String login(User user) {
+    if(user.getUsername().equals(beheerder.getUsername())&& user.getPassword().equals(beheerder.getPassword())){
       return "admin";
+    }
+    if(user.getUsername().equals(gebruiker.getUsername())&& user.getPassword().equals(gebruiker.getPassword())){
+      return "gebruiker";
     }
     return null;
   }
 
-  public boolean isValidToken(String token) {
+  public boolean isValidToken(String token, String action) {
     if(token.equals("admin")){
+      return true;
+    } else if(token.equals("gebruiker") && action.equals("show")){
       return true;
     } else {
       return false;
