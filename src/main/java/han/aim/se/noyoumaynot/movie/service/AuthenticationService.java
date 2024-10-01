@@ -9,12 +9,22 @@ import java.util.ArrayList;
 public class AuthenticationService {
   ArrayList<UserToken> userTokens = new ArrayList<>();
 
-  public UserToken login(String username, String password) {
+  private final String username = "test";
+  private final String password ="123";
+
+  public String login(String username, String password) {
+    if(username.equals(this.username)&&password.equals(this.password)){
+      return "admin";
+    }
     return null;
   }
 
   public boolean isValidToken(String token) {
-    return false;
+    if(token.equals("admin")){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public String getUsername(String token) {

@@ -14,9 +14,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
-
-    private final String username = "test";
-    private final String password ="123";
+    private String token;
     private final MovieService movieService;
     private final AuthenticationService authenticationService;
 
@@ -33,21 +31,27 @@ public class MovieController {
 
     @GetMapping("/show")
     public Movie getMovieById(@RequestParam("id") String id) throws Exception {
-            authenticate("");
+            authenticate(token);
             Movie movie = movieService.getMovieById(id);
             return movie;
     }
 
+    @GetMapping("/login")
+    public String getLogin(@RequestParam("username") String username,@RequestParam("password") String password) throws Exception {
+        token = authenticationService.login(username, password);
+        return "Login is verwerkt!";
+    }
+
     @PostMapping("/add")
     public Movie addMovie(@RequestBody Movie movie) throws Exception {
-        authenticate("");
+        authenticate(token);
         movieService.insertMovie(movie);
         return movie;
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteMovie(@PathVariable("id") String id) throws Exception {
-        authenticate("");
+        authenticate(token);
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();
     }
