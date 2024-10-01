@@ -5,6 +5,7 @@ import han.aim.se.noyoumaynot.movie.service.AuthenticationService;
 import han.aim.se.noyoumaynot.movie.service.MovieService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,33 +31,37 @@ public class MovieController {
     }
 
     @GetMapping("/show")
-    public Movie getMovieById(@RequestParam("id") String id) throws Exception {
-            authenticate(token);
+    public Movie getMovieById(@RequestParam("id") String id,
+                              @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
+            authenticate(token,authorization);
             Movie movie = movieService.getMovieById(id);
             return movie;
     }
 
     @GetMapping("/login")
-    public String getLogin(@RequestParam("username") String username,@RequestParam("password") String password) throws Exception {
+    public String getLogin(@RequestParam("username") String username,@RequestParam("password") String password,
+                           @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
         token = authenticationService.login(username, password);
         return "Login is verwerkt!";
     }
 
     @PostMapping("/add")
-    public Movie addMovie(@RequestBody Movie movie) throws Exception {
-        authenticate(token);
+    public Movie addMovie(@RequestBody Movie movie,
+                          @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
+        authenticate(token,authorization);
         movieService.insertMovie(movie);
         return movie;
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteMovie(@PathVariable("id") String id) throws Exception {
-        authenticate(token);
+    public ResponseEntity<String> deleteMovie(@PathVariable("id") String id,
+                                              @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
+        authenticate(token,authorization);
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();
     }
 
-    private String authenticate(String token) throws Exception {
+    private String authenticate(String token, String authorization) throws Exception {
         if (authenticationService.isValidToken(token)){
             return authenticationService.getUsername(token);
         } else {
