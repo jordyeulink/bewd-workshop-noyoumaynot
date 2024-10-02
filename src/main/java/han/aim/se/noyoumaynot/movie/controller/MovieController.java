@@ -40,10 +40,16 @@ public class MovieController {
     }
 
     @PostMapping("/login")
-    public String postLogin(@RequestParam("user") User user,
-                           @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
+    public String postLogin(@RequestBody User user,
+                            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) throws Exception {
         token = authenticationService.login(user);
-        return "Login is verwerkt!";
+
+        // Check if login was successful
+        if (token != null) {
+            return "Login is verwerkt! User type: " + token;
+        } else {
+            return "Invalid credentials!";
+        }
     }
 
     @PostMapping("/add")

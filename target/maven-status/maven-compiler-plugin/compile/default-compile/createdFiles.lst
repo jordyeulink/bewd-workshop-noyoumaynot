@@ -1,0 +1,11 @@
+han\aim\se\noyoumaynot\movie\repository\UserToken.class
+han\aim\se\noyoumaynot\movie\domain\Movie.class
+han\aim\se\noyoumaynot\NoyoumaynotApplication.class
+han\aim\se\noyoumaynot\movie\controller\MovieController.class
+han\aim\se\noyoumaynot\movie\domain\User.class
+han\aim\se\noyoumaynot\movie\exceptionhandler\GlobalExceptionHandler.class
+han\aim\se\noyoumaynot\movie\domain\Role.class
+han\aim\se\noyoumaynot\movie\repository\MovieList.class
+han\aim\se\noyoumaynot\movie\service\AuthenticationService.class
+han\aim\se\noyoumaynot\movie\repository\MovieNotFoundException.class
+han\aim\se\noyoumaynot\movie\service\MovieService.class

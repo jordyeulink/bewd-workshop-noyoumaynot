@@ -1,0 +1,11 @@
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\controller\MovieController.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\domain\Movie.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\domain\Role.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\domain\User.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\exceptionhandler\GlobalExceptionHandler.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\repository\MovieList.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\repository\MovieNotFoundException.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\repository\UserToken.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\service\AuthenticationService.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\movie\service\MovieService.java
+C:\Users\jordy\Schoolwerk-Han-HBO-ICT\24-25\BEWD\opdrachten\bewd-workshop-noyoumaynot\src\main\java\han\aim\se\noyoumaynot\NoyoumaynotApplication.java
